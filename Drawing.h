@@ -13,8 +13,8 @@
 // Pure geometry data
 class Rectangle {
 public:
-    uint8_t x;
-    uint8_t y;
+    int16_t x;
+    int8_t y;
     uint8_t width;
     uint8_t height;
     Rectangle();
