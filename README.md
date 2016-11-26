@@ -12,9 +12,9 @@ Use A to pause.
 - [x] Title screen
 - [x] SFX
 - [ ] Menu text
-- [ ] Fix left column flicker bug
+- [x] Fix left column flicker bug
 - [ ] Music and better SFX
-- [ ] Scores
+- [x] Scores
 - [ ] Mute option
 
 ## Photos
