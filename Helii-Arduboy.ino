@@ -13,6 +13,8 @@ Player thePlayer;
 CaveManager theCave;
 unsigned int g_highScore = 0;
 bool paused = false;
+bool enableSound = true;
+char scoreStr[4];
 
 bool pressedA = false;
 bool prevPressedA = false;
@@ -348,16 +350,27 @@ void setGameState(GameState newState)
             thePlayer.die();
             //arduboy.tunes.stopScore();
             // TODO: Play death chime
-            arduboy.tunes.tone(310, 500);
+            if (enableSound) arduboy.tunes.tone(310, 500);
             //printf("You died! Your distance was: %d\n", getScore());
         break;
+    }
+}
+
+void drawScore(bool flashing = false) {
+    arduboy.setCursor(0, 0);
+
+    if (flashing && (g_ticks % 20 < 10)) {
+        arduboy.print("    ");
+    } else {
+        sprintf(scoreStr, "%04d", getScore());
+        arduboy.print(scoreStr);
     }
 }
 
 // This function runs once in your game.
 // use it for anything that needs to be set only once in your game.
 void setup() {
-  Serial.begin(9600);
+    Serial.begin(9600);
     //initiate arduboy instance
     arduboy.begin();
     arduboy.setFrameRate(30);
@@ -415,7 +428,7 @@ void loop() {
             // Draw everything
             theCave.Draw();			// Draw the cave
             thePlayer.Draw();		// Draw the player
-        
+            drawScore();        // Draw the score
         break;
         
         case FLYING_STATE:
@@ -425,7 +438,7 @@ void loop() {
                 thePlayer.thrust();
             }
             if (pressedB) {
-                arduboy.tunes.tone(440, 50);
+                if (enableSound) arduboy.tunes.tone(440, 50);
             }
 
             // When + is pressed, pause or unpause.
@@ -451,10 +464,10 @@ void loop() {
             // Draw everything
             theCave.Draw();			// Draw the cave
             thePlayer.Draw();		// Draw the player
+            drawScore();       // Draw the score
 
             // Increment the game timer
             g_gameTime++;
-
         break;
         
         case DEAD_STATE:
@@ -467,7 +480,7 @@ void loop() {
             // Draw everything
             theCave.Draw();			// Draw the cave
             thePlayer.Draw();		// Draw the player
-        
+            drawScore(true);       // Draw the score
         break;			
     }
  
