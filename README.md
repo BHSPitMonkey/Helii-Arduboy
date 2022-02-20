@@ -28,3 +28,12 @@ Use A to pause.
 ## Origin
 
 Helii was originally written as a Wii homebrew game ([source](https://github.com/BHSPitMonkey/bhspitmonkey-code/tree/master/wii/helii)), which was then ported to the 3DS ([source](https://github.com/BHSPitMonkey/Helii3DS)) before finally being ported (very messily!) to Arduboy.
+
+## Compiling
+
+1. Download the Arduino IDE
+2. Open `Helii-Arduboy.ino`
+3. Select Tools > Board > "Arduino Leonardo"
+4. Go to Tools > Manage Libraries... and install "Arduboy"
+5. Click "Verify" to compile the sketch
+6. Click "Upload" to upload the sketch to a connected Arduboy device
